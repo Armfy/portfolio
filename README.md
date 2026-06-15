@@ -6,11 +6,9 @@ Bienvenue sur le dépôt de mon portfolio universitaire et professionnel, réali
 
 ---
 
-## 👤 À propos de moi
+## 🎯 Objectif du portfolio
 
-Je me définis comme un **créatif technique** — aussi à l'aise derrière une caméra que devant un éditeur de code. Mon profil hybride combine le développement web, la production audiovisuelle et le design graphique, avec une sensibilité esthétique forte comme fil conducteur.
-
-Mon objectif professionnel est de m'orienter vers la **vidéographie** et la **photographie**.
+Ce portfolio est un document pédagogique conçu pour attester de mon évolution et de mon acquisition des compétences du BUT MMI 2 (Métiers du Multimédia et de l'Internet). Il met l'accent sur la présentation de mes réalisations (projets) et des compétences théoriques et pratiques associées.
 
 ---
 
