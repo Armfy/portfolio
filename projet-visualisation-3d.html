@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualisation 3D — Rahim Tamhaev</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">RT<span class="acc">—</span>MMI<span class="acc">.</span>26</a>
+  <div class="nav-links">
+    <a href="index.html#projets">Projets</a>
+    <a href="index.html#competences">Compétences</a>
+    <a href="index.html#apropos">À propos</a>
+    <a class="keep" href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="pp-hero" data-screen-label="Visualisation 3D — Hero">
+  <canvas class="hero-canvas"></canvas>
+  <a class="pp-back" href="index.html#projets">← Retour aux projets</a>
+  <p class="mono" style="position: relative; z-index: 2;"><span class="acc">●</span>&nbsp; Projet 06/08 — Développement · SAE D1.02</p>
+  <h1 class="pp-title">Visualisation <em>3D</em></h1>
+  <div class="pp-meta">
+      <div class="item"><span class="mono">Année</span><p>2025/26</p></div>
+      <div class="item"><span class="mono">Type</span><p>Site web — modèle 3D interactif</p></div>
+      <div class="item"><span class="mono">Rôle</span><p>Développement</p></div>
+      <div class="item"><span class="mono">Stack</span><p>Web 3D · Base de données</p></div>
+  </div>
+</header>
+
+<div class="pp-media" data-reveal data-screen-label="Visualisation 3D — Média principal">
+  <image-slot id="v3d-hero" shape="rounded" radius="8" placeholder="Visuel principal — le modèle 3D inspectable dans le navigateur"></image-slot>
+  <p class="cap">↳ Visuel principal — le modèle 3D inspectable dans le navigateur</p>
+</div>
+
+<main class="pp-body" data-screen-label="Visualisation 3D — Étude de cas">
+    <div class="case-section" data-reveal>
+      <span class="label">Contexte</span>
+      <div>
+      <h3>Inspecter un objet <em>en 3D</em></h3>
+      <p>Développement d’un site web intégrant un <strong>modèle 3D interactif et inspectable</strong> directement dans le navigateur.</p>
+      </div>
+    </div>
+
+    <div class="case-section" data-reveal>
+      <span class="label">Technique</span>
+      <div>
+      <h3>3D connectée à une <em>base de données</em></h3>
+      <p>La particularité du projet : le modèle 3D est <strong>lié à une base de données</strong> pour afficher des informations contextuelles selon la zone inspectée par l’utilisateur.</p>
+      <ul>
+        <li><span class="li-num">01</span><span><strong>Intégration 3D</strong> — modèle manipulable dans la page</span></li>
+        <li><span class="li-num">02</span><span><strong>Interaction</strong> — zones cliquables et inspection</span></li>
+        <li><span class="li-num">03</span><span><strong>Données</strong> — informations contextuelles servies par la BDD</span></li>
+      </ul>
+      <div class="pp-gallery">
+        <div><image-slot id="v3d-1" shape="rounded" radius="6" placeholder="Interface — vue 3D"></image-slot></div>
+        <div><image-slot id="v3d-2" shape="rounded" radius="6" placeholder="Panneau d’informations contextuelles"></image-slot></div>
+      </div>
+      </div>
+    </div>
+
+    <div class="case-section" data-reveal>
+      <span class="label">Compétences</span>
+      <div>
+      <h3>Compétences <em>mobilisées</em></h3>
+      <p>Développer un dispositif web avancé mêlant 3D temps réel et données dynamiques.</p>
+      <div class="pp-comp-tags">
+        <span class="tag">C4 — Développer</span>
+      </div>
+      </div>
+    </div>
+</main>
+
+<nav class="pp-nav" data-screen-label="Navigation projets">
+  <a href="projet-jeu-video.html">
+    <span class="dir">← Projet précédent</span>
+    <span class="name">SAE Jeu vidéo</span>
+  </a>
+  <a href="projet-hydratis.html">
+    <span class="dir">Projet suivant →</span>
+    <span class="name">Hydratis × ARM’Communication</span>
+  </a>
+</nav>
+
+<script src="image-slot.js"></script>
+<script src="shared.js"></script>
+</body>
+</html>
