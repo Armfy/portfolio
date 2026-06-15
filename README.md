@@ -46,9 +46,4 @@ Mon travail couvre les 5 grandes compétences de notre formation :
 - **Audiovisuel & Design** : Figma, Suite Adobe (Premiere Pro, After Effects, Photoshop)
 - **Développement & Gestion** : Git, PhaserJS, Unity, Jira, WordPress
 
----
 
-## 📬 Contact
-
-- **Email** : [rahim.tamhaev@exemple.fr](mailto:rahim.tamhaev@exemple.fr)
-- **IUT de Béziers**, France
