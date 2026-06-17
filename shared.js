@@ -336,6 +336,32 @@
     scrollFx();
   }
 
+  /* ---------- toggle projet actuel vs précédent ---------- */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.year-btn');
+    if (!btn) return;
+    
+    var container = btn.closest('.case-section');
+    if (!container) return;
+    
+    var show = btn.getAttribute('data-show');
+    var track = container.querySelector('.project-slider-track');
+    var btns = container.querySelectorAll('.year-btn');
+    
+    btns.forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    
+    if (track) {
+      if (show === 'mmi1') {
+        track.classList.add('show-mmi1');
+        track.style.transform = 'translateX(-50%)';
+      } else {
+        track.classList.remove('show-mmi1');
+        track.style.transform = 'translateX(0)';
+      }
+    }
+  });
+
   /* ---------- déclenche l'anim d'entrée ---------- */
   window.addEventListener('load', function () {
     requestAnimationFrame(function () {

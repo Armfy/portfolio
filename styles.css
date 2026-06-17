@@ -439,6 +439,67 @@ body.loaded .hero-foot { opacity: 1; transform: none; }
   max-width: none;
   white-space: nowrap;
 }
+
+/* ---------- project comparison slider ---------- */
+.project-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.project-year-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  padding: 3px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 5;
+}
+.year-btn {
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding: 5px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.year-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+.project-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.project-slider-track {
+  display: flex;
+  width: 200%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-slide {
+  width: 50%;
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  transition: opacity 0.4s ease;
+}
+.project-slide.slide-mmi1 {
+  opacity: 0.3;
+}
+.project-slider-track.show-mmi1 .project-slide.slide-mmi1 {
+  opacity: 1;
+}
+.project-slider-track.show-mmi1 .project-slide.slide-mmi2 {
+  opacity: 0.3;
+}
 .case-section ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
 .case-section li {
   display: flex; gap: 16px; font-size: 15px; color: var(--muted);
