@@ -155,33 +155,35 @@
         <div class="project-slider-track">
           <div class="project-slide slide-mmi2">
             <div class="pp-gallery" style="margin-bottom: 24px;">
-              <div class="full"><image-slot id="guide-hero" shape="rounded" radius="8" placeholder="Visuel principal — maquette Figma ou carte d'empathie"></image-slot></div>
+              <div class="full"><image-slot id="guide-hero" src="uploads/R309 UIX.png" shape="rounded" radius="8" placeholder="Visuel principal — maquette Figma ou carte d'empathie"></image-slot></div>
             </div>
 
             <h4>Faciliter l'intégration &amp; l'autonomie</h4>
             <p>Conception d'une application mobile centralisant les services de l'IUT (Moodle, Scodoc, ENT, Izly) pour accompagner les nouveaux étudiants dans leur gestion du quotidien et leur intégration sociale.</p>
             
             <h4 style="margin-top: 24px;">Immersion &amp; Enquêtes de terrain (AC21.04)</h4>
-            <p>Pour comprendre les besoins réels, j'ai avec d'autres étudiants réalisé des <strong>interviews</strong> auprès de 5 étudiants (Maylis, Floryen, Nicolas, Clément, Pierre) combinées à des questionnaires Google Forms.</p>
+            <p>Pour cerner les besoins des utilisateurs, nous avons mené <strong>7 entretiens semi-directifs de 20 minutes</strong> (septembre-octobre 2025) auprès d'étudiants de diverses filières de l'IUT de Béziers, couplés à des observations terrain. Cette phase a révélé une forte convivialité d'intégration mais des blocages majeurs : stress à l'arrivée, outils numériques (Moodle, Scodoc, ENT) jugés complexes, non ergonomiques sur mobile et mal expliqués dès le départ.</p>
             <ul>
-              <li><span class="li-num">01</span><span><strong>Échantillonnage ciblé</strong> — étudiants de 1ère année et profils atypiques (ex: reprise d'études)</span></li>
-              <li><span class="li-num">02</span><span><strong>Interviews</strong> — analyse du parcours d'arrivée, de l'utilisation d'Izly et des outils de la BU</span></li>
-              <li><span class="li-num">03</span><span><strong>Identification des dissonances</strong> — écarts entre le discours de l'étudiant et ses actions réelles</span></li>
+              <li><span class="li-num">01</span><span><strong>Échantillonnage transverse</strong> — recueil de retours d'étudiants de plusieurs filières de l'IUT</span></li>
+              <li><span class="li-num">02</span><span><strong>Immersion quantitative</strong> — focus sur l'apprentissage des outils complexes et les lacunes d'Izly et de la BU</span></li>
+              <li><span class="li-num">03</span><span><strong>Identification de friction</strong> — forte demande d'accompagnement numérique et de tutoriels clairs dès le premier jour</span></li>
             </ul>
 
             <h4 style="margin-top: 24px;">Définition &amp; Empathy Map (AC21.05)</h4>
-            <p>Synthèse des données d'exploration via des personas et une <strong>Carte d'Empathie (Say/Think/Do/Feel)</strong> pour identifier les points de friction : complexité d'accès aux outils de la BU, absence d'alertes de notes sur Moodle, ou encore mauvaise organisation des horaires.</p>
+            <p>Nous avons synthétisé nos résultats à travers deux personas cibles : <strong>Léa Gomez</strong> (MMI 1, stressée, recherchant repères et lien social) et <strong>Hugo Martin</strong> (TC 2, technophile, frustré par l'éparpillement des outils et désireux d'aider). Une <strong>Carte d'Empathie (Say/Think/Do/Feel)</strong> a permis d'isoler la problématique globale : <em>comment accompagner l’étudiant pour favoriser son intégration sociale, son efficacité de travail et son accès à l’information ?</em></p>
+            <p style="margin-top: 12px;">Notre conception s'est inspirée du <strong>biomimétisme du blob</strong>, un organisme qui optimise ses réseaux de connexion pour relier efficacement différents pôles : l'application sert ainsi de noyau central reliant toutes les branches (Moodle, Scodoc, ENT, Izly).</p>
             <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
               <div><image-slot id="guide-1" shape="rounded" radius="6" placeholder="Carte d'empathie d'équipe (post-its)"></image-slot></div>
               <div><image-slot id="guide-2" shape="rounded" radius="6" placeholder="Product Canvas &amp; Storyboard"></image-slot></div>
             </div>
 
-            <h4 style="margin-top: 24px;">Idéation &amp; Tests d’utilisabilité (AC21.03)</h4>
-            <p>Animation d'ateliers d'idéation (matrice poubelle/trésor) et passation de <strong>tests utilisateurs modérés en direct et questionnaires d'évaluation</strong> :</p>
+            <h4 style="margin-top: 24px;">Idéation &amp; KPIs (AC21.03)</h4>
+            <p>Après des ateliers d'idéation (matrice Poubelle / Machine à laver / Trésor), nous avons retenu l'application mobile tout-en-un <strong>Guide de l’Étudiant</strong>. Ses fonctionnalités phares : emploi du temps en temps réel, messagerie et système de parrainage intégrés, plan interactif du campus et tutoriels vidéo.</p>
+            <p style="margin-top: 12px;">Nous avons défini des <strong>KPIs de réussite précis</strong> pour évaluer l'impact :</p>
             <ul>
-              <li><span class="li-num">01</span><span><strong>Validation de scénarios</strong> — fluidité d'accès à Scodoc et aux infos d'intégration</span></li>
-              <li><span class="li-num">02</span><span><strong>Mesure des KPIs</strong> — score de satisfaction de 7.5/10 et score d'effort très faible (2/10)</span></li>
-              <li><span class="li-num">03</span><span><strong>Recommandations</strong> — amélioration de la clarté des icônes et version sombre de l'interface</span></li>
+              <li><span class="li-num">01</span><span><strong>Taux d’adoption</strong> — pourcentage d'utilisation active de l'application par les premières années</span></li>
+              <li><span class="li-num">02</span><span><strong>Support de parrainage</strong> — nombre de binômes parrains/filleuls créés et actifs dans le chat</span></li>
+              <li><span class="li-num">03</span><span><strong>Indicateurs d'efficacité</strong> — taux de satisfaction à l'intégration et réduction du volume de demandes d'aide sur Moodle</span></li>
             </ul>
           </div>
           
