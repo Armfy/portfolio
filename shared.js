@@ -6,186 +6,158 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- fond animé : montagnes éclairées par le curseur ---------- */
+  /* Montagnes éclairées par le curseur — rendu GLSL (un seul quad plein écran).
+     L'éclairage est calculé par pixel : pas de scintillement, pas de strokes. */
   function initWaves(canvas) {
-    var ctx = canvas.getContext('2d');
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w = 0, h = 0, t = Math.random() * 100, raf = null, visible = true;
-    /* lumière : position viewport brute, lissée en coordonnées canvas */
-    var cx = -9999, cy = -9999;
-    var gx = -9999, gy = -9999, glowA = 0, overCanvas = false;
+    var cx = -9999, cy = -9999, gx = -9999, gy = -9999, glowA = 0, overCanvas = false;
 
-    document.addEventListener('mousemove', function (e) {
-      cx = e.clientX; cy = e.clientY;
-    });
+    document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; });
 
-    var STEP = 8, LAYERS = 7, NB = 5;
-    var npts = 0, ys = [], horizonGrad = null;
-    var hasPath2D = typeof Path2D === 'function';
+    var gl = canvas.getContext('webgl', { antialias: true, alpha: false, premultipliedAlpha: false })
+          || canvas.getContext('experimental-webgl', { antialias: true });
 
-    /* couleurs précalculées par plan */
-    var baseFill = [], baseStroke = [];
-    for (var li = 0; li < LAYERS; li++) {
-      var lp = li / (LAYERS - 1);
-      baseFill.push('hsla(266, 30%, ' + (11 - 6.5 * lp).toFixed(1) + '%, 0.94)');
-      baseStroke.push('hsla(' + (272 + 26 * lp).toFixed(0) + ', 62%, 68%, ' + (0.10 + 0.20 * lp).toFixed(3) + ')');
+    /* repli : aucun WebGL → dégradé statique */
+    if (!gl) {
+      var c2 = canvas.getContext('2d');
+      var draw2d = function () {
+        w = canvas.offsetWidth; h = canvas.offsetHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        c2.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var g = c2.createLinearGradient(0, 0, 0, h);
+        g.addColorStop(0, '#0c0917'); g.addColorStop(1, '#16112b');
+        c2.fillStyle = g; c2.fillRect(0, 0, w, h);
+      };
+      draw2d(); window.addEventListener('resize', draw2d);
+      return;
     }
 
+    var FS = [
+      'precision highp float;',
+      'uniform vec2 u_res;',
+      'uniform float u_dpr;',
+      'uniform float u_time;',
+      'uniform vec2 u_light;',
+      'uniform float u_glow;',
+      'const int LAYERS = 7;',
+      'float ridge(float u){',
+      '  float v = sin(u)*0.52 + sin(u*2.27+1.7)*0.29 + sin(u*5.13+4.2)*0.13 + sin(u*11.7+8.9)*0.06;',
+      '  return 1.0 - abs(v);',
+      '}',
+      'float topY(int i, float x, float H){',
+      '  float p = float(i)/float(LAYERS-1);',
+      '  float baseY = H*(0.46+0.50*p);',
+      '  float amp = H*(0.30-0.10*p);',
+      '  float drift = u_time*(0.18+0.75*p);',
+      '  float u = x*0.0042 + float(i)*9.31 + drift;',
+      '  return H - (baseY - ridge(u)*amp);',
+      '}',
+      'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }',
+      'void main(){',
+      '  float W = u_res.x/u_dpr;',
+      '  float H = u_res.y/u_dpr;',
+      '  vec2 P = gl_FragCoord.xy/u_dpr;',
+      '  float ty = P.y / H;',
+      '  vec3 col = mix(vec3(0.050,0.038,0.082), vec3(0.090,0.062,0.150), smoothstep(0.15,1.0,ty));',
+      '  float R = 0.42*min(W,H);',
+      '  float dist = distance(P, u_light);',
+      '  float fall = u_glow * smoothstep(R, 0.0, dist);',
+      '  col += vec3(0.30,0.16,0.42) * smoothstep(0.62,0.42,ty) * smoothstep(0.20,0.45,ty) * (0.06 + 0.10*fall);',
+      '  if (ty > 0.42) {',
+      '    vec2 g = floor(P/3.0);',
+      '    float hs = hash(g);',
+      '    if (hs > 0.987) {',
+      '      float tw = 0.5 + 0.5*sin(u_time*6.0*(0.6+hash(g+7.0)) + hash(g)*6.2832);',
+      '      float near = max(0.0, 1.0 - dist/(R*1.3));',
+      '      float a = (0.18 + 0.5*tw)*(0.55 + 0.45*u_glow) + 0.5*near*u_glow;',
+      '      col += mix(vec3(0.78,0.80,0.92), vec3(0.85,0.55,0.98), near) * a;',
+      '    }',
+      '  }',
+      '  for (int i=0;i<LAYERS;i++){',
+      '    float p = float(i)/float(LAYERS-1);',
+      '    float T = topY(i, P.x, H);',
+      '    if (P.y < T) {',
+      '      vec3 base = mix(vec3(0.030,0.024,0.050), vec3(0.075,0.050,0.110), p);',
+      '      float dx = 1.5;',
+      '      float slope = (topY(i, P.x+dx, H) - topY(i, P.x-dx, H))/(2.0*dx);',
+      '      vec2 n = normalize(vec2(-slope, 1.0));',
+      '      vec2 ld = normalize(u_light - P);',
+      '      float lam = max(0.0, dot(n, ld));',
+      '      float surf = fall*(0.20 + 0.34*p);',
+      '      base += vec3(0.62,0.30,0.86) * surf * (0.55 + 0.45*lam);',
+      '      float d = T - P.y;',
+      '      float rim = smoothstep(1.6,0.0,d) + 0.45*smoothstep(9.0,0.0,d);',
+      '      base += vec3(0.85,0.60,1.0) * rim * (0.12 + 0.88*fall) * (0.40 + 0.60*lam);',
+      '      col = base;',
+      '    }',
+      '  }',
+      '  gl_FragColor = vec4(col, 1.0);',
+      '}'
+    ].join('\n');
+
+    var VS = 'attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }';
+
+    function compile(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      return s;
+    }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      gl.clearColor(0.055, 0.043, 0.094, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+      return;
+    }
+    gl.useProgram(prog);
+
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var aLoc = gl.getAttribLocation(prog, 'a');
+    gl.enableVertexAttribArray(aLoc);
+    gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
+
+    var uRes = gl.getUniformLocation(prog, 'u_res');
+    var uDpr = gl.getUniformLocation(prog, 'u_dpr');
+    var uTime = gl.getUniformLocation(prog, 'u_time');
+    var uLight = gl.getUniformLocation(prog, 'u_light');
+    var uGlow = gl.getUniformLocation(prog, 'u_glow');
+
     function resize() {
-      w = canvas.offsetWidth;
-      h = canvas.offsetHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      npts = Math.ceil(w / STEP) + 2;
-      for (var i = 0; i < LAYERS; i++) ys[i] = new Float32Array(npts);
-      /* gradient d'horizon mis en cache (recréé uniquement au resize) */
-      horizonGrad = ctx.createLinearGradient(0, h * 0.16, 0, h * 0.62);
-      horizonGrad.addColorStop(0, 'hsla(285, 60%, 60%, 0)');
-      horizonGrad.addColorStop(0.55, 'hsla(285, 55%, 58%, 0.055)');
-      horizonGrad.addColorStop(1, 'hsla(285, 55%, 58%, 0)');
+      w = canvas.offsetWidth; h = canvas.offsetHeight;
+      canvas.width = Math.max(1, Math.round(w * dpr));
+      canvas.height = Math.max(1, Math.round(h * dpr));
+      gl.viewport(0, 0, canvas.width, canvas.height);
     }
     resize();
     window.addEventListener('resize', resize);
 
-    /* crête montagneuse : bruit « ridged » (pics nets) */
-    function ridgeY(u) {
-      var v = Math.sin(u) * 0.52
-            + Math.sin(u * 2.27 + 1.7) * 0.29
-            + Math.sin(u * 5.13 + 4.2) * 0.13
-            + Math.sin(u * 11.7 + 8.9) * 0.06;
-      return 1 - Math.abs(v); /* 0..1, pics aigus */
-    }
-
-    /* calcule les hauteurs de la crête i UNE fois par frame (réutilisé partout) */
-    function computeLayer(i) {
-      var p = i / (LAYERS - 1); /* 0 = lointain, 1 = proche */
-      var baseY = h * (0.46 + 0.50 * p);
-      var amp = h * (0.30 - 0.10 * p);
-      var drift = t * (0.18 + 0.75 * p); /* parallaxe : devant plus rapide */
-      var arr = ys[i];
-      for (var k = 0; k < npts; k++) {
-        var u = k * STEP * 0.0042 + i * 9.31 + drift;
-        arr[k] = baseY - ridgeY(u) * amp;
-      }
-    }
-
     function frame() {
-      t += 0.004;
+      t += 0.0032;
 
-      /* lumière : conversion viewport -> canvas une seule fois par frame */
+      /* lumière : suit le curseur au survol, sinon dérive en autonomie */
       var rect = canvas.getBoundingClientRect();
       var mx = cx - rect.left, my = cy - rect.top;
       overCanvas = cx > -9000 && mx >= 0 && mx <= rect.width && my >= -80 && my <= rect.height + 80;
-      if (overCanvas && gx < -999) { gx = mx; gy = my; }
-      gx += (mx - gx) * 0.09;
-      gy += (my - gy) * 0.09;
-      glowA += ((overCanvas ? 1 : 0) - glowA) * 0.07;
-      var lit = glowA > 0.02 && gx > -999;
-      var R = Math.max(260, Math.min(w, h) * 0.38);
+      var autoX = w * (0.5 + 0.32 * Math.sin(t * 0.40));
+      var autoY = h * (0.28 + 0.09 * Math.sin(t * 0.63 + 1.1));
+      var tx = overCanvas ? mx : autoX;
+      var ty = overCanvas ? my : autoY;
+      if (gx < -999) { gx = tx; gy = ty; }
+      var ease = overCanvas ? 0.10 : 0.022;
+      gx += (tx - gx) * ease;
+      gy += (ty - gy) * ease;
+      glowA += ((overCanvas ? 1 : 0.55) - glowA) * 0.05;
 
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = horizonGrad;
-      ctx.fillRect(0, 0, w, h);
-
-      /* assombrissement global du côté opposé à la lumière (partagé par tous les plans) */
-      var shadeGrad = null;
-      if (lit) {
-        var lx = Math.min(Math.max(gx / w, 0), 1);
-        var dk = 0.22 * glowA;
-        shadeGrad = ctx.createLinearGradient(0, 0, w, 0);
-        shadeGrad.addColorStop(0, 'rgba(2, 2, 6, ' + (dk * lx).toFixed(3) + ')');
-        shadeGrad.addColorStop(lx, 'rgba(2, 2, 6, 0)');
-        shadeGrad.addColorStop(1, 'rgba(2, 2, 6, ' + (dk * (1 - lx)).toFixed(3) + ')');
-      }
-
-      for (var i = 0; i < LAYERS; i++) {
-        computeLayer(i);
-        var arr = ys[i];
-        var k, x, y;
-
-        /* ombre portée : la crête projetée à l'opposé de la lumière,
-           visible sur les plans plus lointains */
-        if (lit) {
-          ctx.beginPath();
-          ctx.moveTo(0, arr[0]);
-          for (k = 1; k < npts; k++) ctx.lineTo(k * STEP, arr[k]);
-          for (k = npts - 1; k >= 0; k--) {
-            x = k * STEP; y = arr[k];
-            var sdx = x - gx, sdy = y - gy;
-            var sd = Math.sqrt(sdx * sdx + sdy * sdy) || 1;
-            var sl = (110 * Math.max(0, 1 - sd / R) + 2) * glowA;
-            ctx.lineTo(x + (sdx / sd) * sl, y + (sdy / sd) * sl);
-          }
-          ctx.closePath();
-          ctx.fillStyle = 'rgba(4, 3, 8, ' + (0.32 * glowA).toFixed(3) + ')';
-          ctx.fill();
-        }
-
-        /* silhouette */
-        ctx.beginPath();
-        ctx.moveTo(-6, h + 6);
-        for (k = 0; k < npts; k++) ctx.lineTo(k * STEP, arr[k]);
-        ctx.lineTo(w + 6, h + 6);
-        ctx.closePath();
-        ctx.fillStyle = baseFill[i];
-        ctx.fill();
-        /* versant à l'ombre : le même chemin re-rempli avec le gradient */
-        if (lit) { ctx.fillStyle = shadeGrad; ctx.fill(); }
-
-        /* crête éclairée : Lambert par segment (pente face à la lumière = brillante),
-           segments groupés en 5 niveaux pour limiter les strokes */
-        if (lit && hasPath2D) {
-          var basePath = new Path2D();
-          var buckets = [null, null, null, null, null];
-          for (k = 1; k < npts; k++) {
-            var x0 = (k - 1) * STEP, y0 = arr[k - 1];
-            x = k * STEP; y = arr[k];
-            var dx = gx - (x0 + STEP / 2), dy = gy - (y0 + y) / 2;
-            var dist = Math.sqrt(dx * dx + dy * dy) || 1;
-            var fall = 1 - dist / R;
-            var b = 0;
-            if (fall > 0) {
-              var slope = (y - y0) / STEP;
-              /* normale (slope, -1) · direction de la lumière */
-              var lam = (slope * dx / dist - dy / dist) / Math.sqrt(slope * slope + 1);
-              b = fall * (0.25 + 0.75 * Math.max(0, lam)) * glowA;
-            }
-            var bi = Math.min(NB, Math.floor(b * (NB + 1)));
-            if (bi <= 0) { basePath.moveTo(x0, y0); basePath.lineTo(x, y); }
-            else {
-              if (!buckets[bi - 1]) buckets[bi - 1] = new Path2D();
-              buckets[bi - 1].moveTo(x0, y0); buckets[bi - 1].lineTo(x, y);
-            }
-          }
-          ctx.lineWidth = 1;
-          ctx.strokeStyle = baseStroke[i];
-          ctx.stroke(basePath);
-          for (var q = 0; q < NB; q++) {
-            if (!buckets[q]) continue;
-            var f = (q + 1) / NB;
-            ctx.lineWidth = 1 + f * 0.8;
-            ctx.strokeStyle = 'hsla(' + (290 - 8 * f).toFixed(0) + ', 95%, ' + (68 + 14 * f).toFixed(0) + '%, ' + (0.25 + 0.65 * f).toFixed(3) + ')';
-            ctx.stroke(buckets[q]);
-          }
-          ctx.lineWidth = 1;
-        } else {
-          ctx.beginPath();
-          ctx.moveTo(0, arr[0]);
-          for (k = 1; k < npts; k++) ctx.lineTo(k * STEP, arr[k]);
-          ctx.lineWidth = 1;
-          ctx.strokeStyle = baseStroke[i];
-          ctx.stroke();
-        }
-      }
-
-      /* halo ambiant autour de la lumière */
-      if (lit) {
-        var halo = ctx.createRadialGradient(gx, gy, 0, gx, gy, R);
-        halo.addColorStop(0, 'hsla(290, 80%, 68%, ' + (0.08 * glowA).toFixed(3) + ')');
-        halo.addColorStop(1, 'hsla(290, 80%, 68%, 0)');
-        ctx.fillStyle = halo;
-        ctx.fillRect(gx - R, gy - R, R * 2, R * 2);
-      }
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform1f(uDpr, dpr);
+      gl.uniform1f(uTime, t);
+      gl.uniform2f(uLight, gx, h - gy); /* repère y vers le haut, comme gl_FragCoord */
+      gl.uniform1f(uGlow, glowA);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
 
       raf = requestAnimationFrame(frame);
     }
@@ -194,8 +166,8 @@
     function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
     if (reduceMotion) {
-      /* une seule frame statique */
-      t = 4.2; frame(); stop();
+      /* une seule frame statique, déjà éclairée */
+      t = 4.2; glowA = 0.6; gx = w * 0.62; gy = h * 0.3; frame(); stop();
       return;
     }
 
@@ -248,6 +220,12 @@
       if (e.target.closest('a, button, image-slot, .hover-target')) ring.classList.remove('is-hover');
     });
   }
+
+  /* ---------- filet de s\u00e9curit\u00e9 : masque les logos d'outils introuvables ---------- */
+  document.querySelectorAll('.tool img').forEach(function (img) {
+    img.addEventListener('error', function () { img.style.display = 'none'; });
+    if (img.complete && img.naturalWidth === 0) img.style.display = 'none';
+  });
 
   /* ---------- nav scrolled ---------- */
   var nav = document.querySelector('.nav');

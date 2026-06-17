@@ -11,9 +11,9 @@
 <nav class="nav">
   <a class="nav-logo" href="index.html">RT<span class="acc">—</span>MMI<span class="acc">.</span>26</a>
   <div class="nav-links">
-    <a href="#projets">Projets</a>
     <a href="#competences">Compétences</a>
-    <a href="#apropos">Introduction</a>
+    <a href="#apropos">À propos</a>
+    <a class="keep" href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -46,18 +46,20 @@
   </div>
 </header>
 
-<!-- ================= INTRODUCTION ================= -->
-<section class="section" id="apropos" data-screen-label="Introduction">
+<!-- ================= À PROPOS ================= -->
+<section class="section" id="apropos" data-screen-label="À propos">
   <div class="section-head" data-reveal>
     <span class="num">01</span>
-    <h2>Intro<em>duction</em></h2>
+    <h2>À <em>propos</em></h2>
   </div>
   <div class="about-grid">
     <div class="about-text">
-      <p data-reveal>Ce portfolio est un document pédagogique conçu pour attester de mon évolution et de mon acquisition des compétences en deuxième année de BUT MMI (Métiers du Multimédia et de l'Internet).</p>
-      <p data-reveal style="--d: 0.1s">Il met en avant mon parcours pratique à travers une sélection de projets concrets et l'évaluation de mes compétences techniques et créatives.</p>
+      <p data-reveal>Bienvenue sur mon portfolio du <em>S4</em>. Il a pour but de présenter mon <em>acquisition de compétences</em> à travers les différents projets réalisés tout au long de l'année universitaire.</p>
+      <p data-reveal style="--d: 0.1s">Cette année a été chargée en projets, me permettant d'acquérir un <em>savoir-faire</em> important et d'approfondir mes connaissances ainsi que ma maîtrise de compétences déjà acquises ou évoquées l'année précédente.</p>
+      <p class="small" data-reveal style="--d: 0.2s">Profil hybride croisant le développement web, la production audiovisuelle et le design — avec, après le BUT, le projet d'une carrière en vidéographie et photographie.</p>
     </div>
     <div class="about-side" data-reveal style="--d: 0.15s">
+      <image-slot id="portrait" style="width: 100%; max-width: 360px; height: 420px;" shape="rounded" radius="6" placeholder="Portrait — photo de profil"></image-slot>
       <div class="about-tags">
         <span class="tag">Tournage &amp; montage</span>
         <span class="tag">WordPress</span>
@@ -70,242 +72,168 @@
   </div>
 </section>
 
-<!-- ================= PROJETS PHARES ================= -->
-<section class="section" id="projets" data-screen-label="Projets phares">
+<!-- ================= PAR COMPÉTENCES ================= -->
+<section class="section" id="competences" data-screen-label="Par compétences">
   <div class="section-head" data-reveal>
     <span class="num">02</span>
-    <h2>Projets <em>phares</em></h2>
-    <span class="count">08 sélectionnés</span>
+    <h2>Par <em>compétences</em></h2>
+    <span class="count">Référentiel BUT MMI</span>
   </div>
 
-  <div class="proj-list">
+  <p class="comp-intro" data-reveal>Plutôt que de dérouler des projets, j’organise mon travail autour des <em>cinq compétences</em> du référentiel BUT MMI — chacune prouvée par <em>deux projets</em>.
+    <span class="small">Comprendre · Concevoir · Exprimer · Développer · Entreprendre.</span>
+  </p>
 
-    <a class="proj-row" href="projet-stage-pft34.html" data-reveal>
-      <span class="idx">01</span>
-      <span class="proj-thumb"><image-slot id="thumb-stage" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>PFT34 <em>Méc@innov</em></h3>
-        <span class="sub">Stage — refonte globale de la communication</span>
-      </span>
-      <span class="meta"><span class="cat">Web · Print · Vidéo</span><br>2026</span>
-      <span class="arrow">→</span>
-    </a>
+  <div class="skills">
 
-    <a class="proj-row" href="projet-hackathon-2026.html" data-reveal>
-      <span class="idx">02</span>
-      <span class="proj-thumb"><image-slot id="thumb-hackathon" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>Hackathon <em>2026</em></h3>
-        <span class="sub">Cabinet LMB Thérapie — groupe communication</span>
-      </span>
-      <span class="meta"><span class="cat">Événement · Comm</span><br>Mars 2026</span>
-      <span class="arrow">→</span>
-    </a>
+    <article class="skill" data-reveal>
+      <div class="skill-rail">
+        <span class="skill-code">C1</span>
+        <h3 class="skill-name"><em>Comprendre</em><br>les écosystèmes</h3>
+        <p class="skill-desc">Comprendre les écosystèmes, les besoins des utilisateurs et les dispositifs de communication numérique.</p>
+        <div class="skill-tools"><span class="tool"><img src="https://cdn.simpleicons.org/figma/8d8798" alt="" loading="lazy">Figma</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/notion/8d8798" alt="" loading="lazy">Notion</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/googleanalytics/8d8798" alt="" loading="lazy">Analytics</span></div>
+        <a class="skill-more" href="competence-c1.html">Voir la compétence <span>→</span></a>
+      </div>
+      <div class="skill-evidence">
+        <span class="ev-label">Projets — preuves</span>
+        <a class="ev-row" href="competence-c1.html#projet-hydratis">
+          <span class="ev-idx">01</span>
+          <span class="ev-text"><span class="ev-name">Hydratis × <em>ARM’Communication</em></span><span class="ev-desc">Audit global &amp; analyse SWOT</span></span>
+          <span class="ev-cat">Stratégie</span>
+          <span class="ev-go">→</span>
+        </a>
+        <a class="ev-row" href="competence-c1.html#projet-guide-etudiant">
+          <span class="ev-idx">02</span>
+          <span class="ev-text"><span class="ev-name">Guide de <em>l’Étudiant</em></span><span class="ev-desc">Conception UX &amp; tests utilisateurs</span></span>
+          <span class="ev-cat">UX Research</span>
+          <span class="ev-go">→</span>
+        </a>
+      </div>
+    </article>
 
-    <a class="proj-row" href="projet-marathon-mmi.html" data-reveal>
-      <span class="idx">03</span>
-      <span class="proj-thumb"><image-slot id="thumb-marathon" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>Marathon MMI — <em>Immanence Djerba</em></h3>
-        <span class="sub">Production intensive en équipe</span>
-      </span>
-      <span class="meta"><span class="cat">Événement · Prod</span><br>Janv. 2026</span>
-      <span class="arrow">→</span>
-    </a>
+    <article class="skill" data-reveal>
+      <div class="skill-rail">
+        <span class="skill-code">C2</span>
+        <h3 class="skill-name"><em>Concevoir</em><br>des réponses</h3>
+        <p class="skill-desc">Concevoir ou co-concevoir une réponse stratégique pertinente à une problématique complexe.</p>
+        <div class="skill-tools"><span class="tool"><img src="https://cdn.simpleicons.org/figma/8d8798" alt="" loading="lazy">Figma</span>
+          <span class="tool"><span class="tmono">Ai</span>Illustrator</span>
+          <span class="tool"><span class="tmono">Ps</span>Photoshop</span></div>
+        <a class="skill-more" href="competence-c2.html">Voir la compétence <span>→</span></a>
+      </div>
+      <div class="skill-evidence">
+        <span class="ev-label">Projets — preuves</span>
+        <a class="ev-row" href="competence-c2.html#projet-horizon">
+          <span class="ev-idx">01</span>
+          <span class="ev-text"><span class="ev-name"><em>Horizon</em></span><span class="ev-desc">Interface conçue sur Figma</span></span>
+          <span class="ev-cat">UX/UI</span>
+          <span class="ev-go">→</span>
+        </a>
+        <a class="ev-row" href="competence-c2.html#projet-publicite">
+          <span class="ev-idx">02</span>
+          <span class="ev-text"><span class="ev-name">Publicité <em>1’30</em></span><span class="ev-desc">Conception narrative &amp; visuelle</span></span>
+          <span class="ev-cat">Audiovisuel</span>
+          <span class="ev-go">→</span>
+        </a>
+      </div>
+    </article>
 
-    <a class="proj-row" href="projet-horizon.html" data-reveal>
-      <span class="idx">04</span>
-      <span class="proj-thumb"><image-slot id="thumb-horizon" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3><em>Horizon</em></h3>
-        <span class="sub">Application de gestion personnelle — UI &amp; gestion de projet</span>
-      </span>
-      <span class="meta"><span class="cat">UX/UI · Jira</span><br>2025/26</span>
-      <span class="arrow">→</span>
-    </a>
+    <article class="skill" data-reveal>
+      <div class="skill-rail">
+        <span class="skill-code">C3</span>
+        <h3 class="skill-name"><em>Exprimer</em><br>un message</h3>
+        <p class="skill-desc">Exprimer un message avec les médias numériques pour informer et communiquer.</p>
+        <div class="skill-tools"><span class="tool"><span class="tmono">Pr</span>Premiere</span>
+          <span class="tool"><span class="tmono">Ae</span>After Effects</span>
+          <span class="tool"><span class="tmono">Id</span>InDesign</span>
+          <span class="tool"><span class="tmono">Ps</span>Photoshop</span></div>
+        <a class="skill-more" href="competence-c3.html">Voir la compétence <span>→</span></a>
+      </div>
+      <div class="skill-evidence">
+        <span class="ev-label">Projets — preuves</span>
+        <a class="ev-row" href="competence-c3.html#projet-stage">
+          <span class="ev-idx">01</span>
+          <span class="ev-text"><span class="ev-name">PFT34 <em>Méc@innov</em></span><span class="ev-desc">Refonte com’ — web, print, vidéo</span></span>
+          <span class="ev-cat">Direction artistique</span>
+          <span class="ev-go">→</span>
+        </a>
+        <a class="ev-row" href="competence-c3.html#projet-marathon">
+          <span class="ev-idx">02</span>
+          <span class="ev-text"><span class="ev-name">Marathon MMI — <em>Immanence Djerba</em></span><span class="ev-desc">Production audiovisuelle intensive</span></span>
+          <span class="ev-cat">Production</span>
+          <span class="ev-go">→</span>
+        </a>
+      </div>
+    </article>
 
-    <a class="proj-row" href="projet-jeu-video.html" data-reveal>
-      <span class="idx">05</span>
-      <span class="proj-thumb"><image-slot id="thumb-jeu" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>SAE <em>Jeu vidéo</em></h3>
-        <span class="sub">Développement complet en 3 semaines — PhaserJS</span>
-      </span>
-      <span class="meta"><span class="cat">Dev · JavaScript</span><br>2025/26</span>
-      <span class="arrow">→</span>
-    </a>
+    <article class="skill" data-reveal>
+      <div class="skill-rail">
+        <span class="skill-code">C4</span>
+        <h3 class="skill-name"><em>Développer</em><br>pour le web</h3>
+        <p class="skill-desc">Développer pour le web et les médias numériques.</p>
+        <div class="skill-tools"><span class="tool"><img src="https://cdn.simpleicons.org/javascript/8d8798" alt="" loading="lazy">JavaScript</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/html5/8d8798" alt="" loading="lazy">HTML5</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/css/8d8798" alt="" loading="lazy">CSS</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/nodedotjs/8d8798" alt="" loading="lazy">Node.js</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/wordpress/8d8798" alt="" loading="lazy">WordPress</span>
+          <span class="tool"><span class="tmono">Ph</span>Phaser</span></div>
+        <a class="skill-more" href="competence-c4.html">Voir la compétence <span>→</span></a>
+      </div>
+      <div class="skill-evidence">
+        <span class="ev-label">Projets — preuves</span>
+        <a class="ev-row" href="competence-c4.html#projet-jeu-video">
+          <span class="ev-idx">01</span>
+          <span class="ev-text"><span class="ev-name">SAE <em>Jeu vidéo</em></span><span class="ev-desc">Jeu complet sous PhaserJS</span></span>
+          <span class="ev-cat">Développement</span>
+          <span class="ev-go">→</span>
+        </a>
+        <a class="ev-row" href="competence-c4.html#projet-visualisation">
+          <span class="ev-idx">02</span>
+          <span class="ev-text"><span class="ev-name">Visualisation <em>3D</em></span><span class="ev-desc">3D interactive liée à une BDD</span></span>
+          <span class="ev-cat">Dev · 3D</span>
+          <span class="ev-go">→</span>
+        </a>
+      </div>
+    </article>
 
-    <a class="proj-row" href="projet-visualisation-3d.html" data-reveal>
-      <span class="idx">06</span>
-      <span class="proj-thumb"><image-slot id="thumb-3d" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>Visualisation <em>3D</em></h3>
-        <span class="sub">SAE D1.02 — modèle 3D interactif lié à une base de données</span>
-      </span>
-      <span class="meta"><span class="cat">Dev · 3D</span><br>2025/26</span>
-      <span class="arrow">→</span>
-    </a>
-
-    <a class="proj-row" href="projet-hydratis.html" data-reveal>
-      <span class="idx">07</span>
-      <span class="proj-thumb"><image-slot id="thumb-hydratis" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>Hydratis × <em>ARM'Communication</em></h3>
-        <span class="sub">Audit &amp; stratégie de lancement — budget fictif 80 000 € HT</span>
-      </span>
-      <span class="meta"><span class="cat">Stratégie · Comm</span><br>2025/26</span>
-      <span class="arrow">→</span>
-    </a>
-
-    <a class="proj-row" href="projet-publicite-montre.html" data-reveal>
-      <span class="idx">08</span>
-      <span class="proj-thumb"><image-slot id="thumb-montre" shape="rounded" radius="4" placeholder="Visuel"></image-slot></span>
-      <span class="title-wrap">
-        <h3>Publicité <em>1'30</em></h3>
-        <span class="sub">SAE Audiovisuel — production complète d'un spot pour une montre</span>
-      </span>
-      <span class="meta"><span class="cat">Audiovisuel</span><br>2025/26</span>
-      <span class="arrow">→</span>
-    </a>
+    <article class="skill" data-reveal>
+      <div class="skill-rail">
+        <span class="skill-code">C5</span>
+        <h3 class="skill-name"><em>Entreprendre</em><br>un projet</h3>
+        <p class="skill-desc">Entreprendre dans le secteur du numérique.</p>
+        <div class="skill-tools"><span class="tool"><img src="https://cdn.simpleicons.org/jira/8d8798" alt="" loading="lazy">Jira</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/git/8d8798" alt="" loading="lazy">Git</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/github/8d8798" alt="" loading="lazy">GitHub</span>
+          <span class="tool"><img src="https://cdn.simpleicons.org/trello/8d8798" alt="" loading="lazy">Trello</span></div>
+        <a class="skill-more" href="competence-c5.html">Voir la compétence <span>→</span></a>
+      </div>
+      <div class="skill-evidence">
+        <span class="ev-label">Projets — preuves</span>
+        <a class="ev-row" href="competence-c5.html#projet-stage">
+          <span class="ev-idx">01</span>
+          <span class="ev-text"><span class="ev-name">PFT34 <em>Méc@innov</em></span><span class="ev-desc">Pilotage en conditions réelles</span></span>
+          <span class="ev-cat">Gestion de projet</span>
+          <span class="ev-go">→</span>
+        </a>
+        <a class="ev-row" href="competence-c5.html#projet-hackathon">
+          <span class="ev-idx">02</span>
+          <span class="ev-text"><span class="ev-name">Hackathon <em>2026</em></span><span class="ev-desc">Production en équipe sous contrainte</span></span>
+          <span class="ev-cat">Événement</span>
+          <span class="ev-go">→</span>
+        </a>
+      </div>
+    </article>
 
   </div>
 </section>
 
-<!-- ================= AUTRES PROJETS ================= -->
-<section class="section" id="autres" data-screen-label="Autres projets">
-  <div class="section-head" data-reveal>
-    <span class="num">03</span>
-    <h2>Autres <em>projets</em></h2>
-    <span class="count">08 archivés</span>
-  </div>
-  <div class="other-grid">
-    <div class="other-row" data-reveal>
-      <span class="idx">09</span>
-      <span><span class="name">Mini-jeu de bowling</span> — <span class="desc">création d'un jeu sous Unity</span></span>
-      <span class="cat">Dev · 3D</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">10</span>
-      <span><span class="name">SAE D1.01 — Architecture MVC</span> — <span class="desc">site dynamique NodeJS, données temps réel d'une API</span></span>
-      <span class="cat">Dev</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">11</span>
-      <span><span class="name">Affiche &amp; réalité augmentée</span> — <span class="desc">affiche à message fort doublée d'un site web en AR</span></span>
-      <span class="cat">Design · AR</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">12</span>
-      <span><span class="name">Design UX/UI — audit &amp; tests</span> — <span class="desc">guide d'entretien, maquette Figma, sessions de tests</span></span>
-      <span class="cat">UX</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">13</span>
-      <span><span class="name">Appli de colocation</span> — <span class="desc">maquette mobile, personas, dossier méthodologique</span></span>
-      <span class="cat">UX/UI</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">14</span>
-      <span><span class="name">Création numérique</span> — <span class="desc">flyer, moodboard, redesign d'affiche à thème imposé</span></span>
-      <span class="cat">Design</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">15</span>
-      <span><span class="name">Basic-Fit — tone of voice</span> — <span class="desc">analyse de la ligne éditoriale de l'entreprise</span></span>
-      <span class="cat">Comm</span>
-    </div>
-    <div class="other-row" data-reveal>
-      <span class="idx">16</span>
-      <span><span class="name">Motion design</span> — <span class="desc">mini vidéo de promotion pour les alternants</span></span>
-      <span class="cat">Motion</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= COMPÉTENCES ================= -->
-<section class="section" id="competences" data-screen-label="Compétences BUT MMI">
-  <div class="section-head" data-reveal>
-    <span class="num">04</span>
-    <h2>Compétences <em>BUT MMI</em></h2>
-    <span class="count">Référentiel national</span>
-  </div>
-
-  <div class="comp-list">
-    <div class="comp-row" data-reveal>
-      <span class="code">C1</span>
-      <h3><em>Comprendre</em> les écosystèmes</h3>
-      <div class="comp-body">
-        <p>Analyser les besoins, les publics et les usages : audits de communication, analyse SWOT, recueil de besoins et entretiens utilisateurs.</p>
-        <div class="comp-projs">
-          <a class="tag" href="projet-hydratis.html">Hydratis</a>
-          <span class="tag">Basic-Fit</span>
-          <span class="tag">Audit UX &amp; tests</span>
-          <a class="tag" href="projet-hackathon-2026.html">Hackathon 2026</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="comp-row" data-reveal>
-      <span class="code">C2</span>
-      <h3><em>Concevoir</em> des réponses</h3>
-      <div class="comp-body">
-        <p>Imaginer des dispositifs de communication ou des interfaces : maquettes Figma, personas, guides d'entretien, recommandations stratégiques.</p>
-        <div class="comp-projs">
-          <a class="tag" href="projet-horizon.html">Horizon</a>
-          <span class="tag">Appli colocation</span>
-          <span class="tag">Affiche &amp; AR</span>
-          <a class="tag" href="projet-hydratis.html">Hydratis</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="comp-row" data-reveal>
-      <span class="code">C3</span>
-      <h3><em>Exprimer</em> un message</h3>
-      <div class="comp-body">
-        <p>Créer avec les médias numériques : vidéo publicitaire et institutionnelle, motion design, print grand format, direction artistique.</p>
-        <div class="comp-projs">
-          <a class="tag" href="projet-stage-pft34.html">Stage PFT34</a>
-          <a class="tag" href="projet-publicite-montre.html">Publicité 1'30</a>
-          <span class="tag">Motion design</span>
-          <a class="tag" href="projet-marathon-mmi.html">Marathon MMI</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="comp-row" data-reveal>
-      <span class="code">C4</span>
-      <h3><em>Développer</em> pour le web</h3>
-      <div class="comp-body">
-        <p>Développer des dispositifs interactifs : sites dynamiques NodeJS, jeu PhaserJS, visualisation 3D connectée à une base de données, WordPress.</p>
-        <div class="comp-projs">
-          <a class="tag" href="projet-jeu-video.html">SAE Jeu vidéo</a>
-          <a class="tag" href="projet-visualisation-3d.html">Visualisation 3D</a>
-          <span class="tag">SAE D1.01 MVC</span>
-          <a class="tag" href="projet-stage-pft34.html">Stage PFT34</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="comp-row" data-reveal>
-      <span class="code">C5</span>
-      <h3><em>Entreprendre</em> un projet</h3>
-      <div class="comp-body">
-        <p>Piloter et produire en conditions réelles : gestion de projet sur Jira, production intensive en équipe, déploiement et hébergement, budget média.</p>
-        <div class="comp-projs">
-          <a class="tag" href="projet-stage-pft34.html">Stage PFT34</a>
-          <a class="tag" href="projet-marathon-mmi.html">Marathon MMI</a>
-          <a class="tag" href="projet-hackathon-2026.html">Hackathon 2026</a>
-          <a class="tag" href="projet-horizon.html">Horizon</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer" data-screen-label="Footer">
-  <div class="footer-bottom" style="margin-top: 0;">
+<!-- ================= CONTACT ================= -->
+<footer class="footer" id="contact" data-screen-label="Contact">
+  <h2 class="footer-big" data-reveal>Travaillons<br><em>ensemble</em>.</h2>
+  <a class="footer-email" href="mailto:rahim.tamhaev@exemple.fr" data-reveal style="--d: 0.15s">rahim.tamhaev@exemple.fr <span>→</span></a>
+  <div class="footer-bottom">
     <span>© 2026 Rahim Tamhaev</span>
     <span>BUT MMI · IUT de Béziers</span>
     <span>Design &amp; code — RT</span>
