@@ -433,6 +433,12 @@ body.loaded .hero-foot { opacity: 1; transform: none; }
 .case-section h3 em { color: var(--accent); }
 .case-section p { font-size: 16px; color: var(--muted); max-width: 64ch; margin-bottom: 1em; }
 .case-section p strong { color: var(--text); font-weight: 500; }
+.case-section .project-meta-tags {
+  margin-bottom: 20px;
+  font-size: 13px;
+  max-width: none;
+  white-space: nowrap;
+}
 .case-section ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
 .case-section li {
   display: flex; gap: 16px; font-size: 15px; color: var(--muted);
