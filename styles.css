@@ -916,8 +916,8 @@ image-slot[data-filled]:hover {
   align-items: center;
   gap: 8px;
 }
-.analysis-col.pos h5 { color: #10b981; } /* Emerald */
-.analysis-col.neg h5 { color: #f59e0b; } /* Amber */
+.analysis-col.pos h5 { color: var(--accent); }
+.analysis-col.neg h5 { color: var(--muted); }
 .analysis-list {
   list-style: none !important;
   display: flex !important;
