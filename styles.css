@@ -882,26 +882,24 @@ image-slot[data-filled]:hover {
 /* ---------- Project Analysis Sections ---------- */
 .analysis-section {
   margin-top: 32px;
-  padding: 24px;
-  background: var(--surface);
-  border: 1px solid var(--line-strong);
-  border-radius: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
 }
 .analysis-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .analysis-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: clamp(24px, 4vw, 48px);
 }
 @media (max-width: 768px) {
   .analysis-grid {
@@ -909,58 +907,54 @@ image-slot[data-filled]:hover {
   }
 }
 .analysis-col h5 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
 }
-.analysis-col.pos h5 { color: var(--accent); }
-.analysis-col.neg h5 { color: var(--muted); }
+.analysis-col.pos h5 { color: var(--text); }
+.analysis-col.neg h5 { color: var(--text); }
 .analysis-list {
   list-style: none !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 10px !important;
+  gap: 12px !important;
   margin-top: 0 !important;
 }
 .analysis-list li {
-  font-size: 14px !important;
+  font-size: 15px !important;
   color: var(--muted) !important;
-  line-height: 1.5 !important;
-  display: flex !important;
-  gap: 8px !important;
-  align-items: flex-start !important;
-  border-left: none !important;
-  padding-left: 0 !important;
+  line-height: 1.55 !important;
+  display: block !important;
+  border-left: 1px solid var(--line-strong) !important;
+  padding-left: 18px !important;
+  gap: 0 !important;
 }
 .analysis-list li::before {
-  content: "●";
-  color: currentColor;
-  font-size: 8px;
-  margin-top: 5px;
-  flex: none;
+  display: none;
 }
 .analysis-text {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.6;
+  max-width: 64ch;
 }
 .analysis-alt-item {
-  margin-top: 16px;
-  border-left: 2px solid var(--accent);
-  padding-left: 16px;
+  margin-top: 14px;
+  border-left: 1px solid var(--line-strong);
+  padding-left: 18px;
 }
 .analysis-alt-item h6 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 .analysis-alt-item p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
+  line-height: 1.55;
   margin-bottom: 0 !important;
 }
 
