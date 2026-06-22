@@ -336,45 +336,6 @@
     scrollFx();
   }
 
-  /* ---------- toggle projet actuel vs précédent ---------- */
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest('.year-btn');
-    if (!btn) return;
-    
-    var container = btn.closest('.case-section');
-    if (!container) return;
-    
-    var show = btn.getAttribute('data-show');
-    var track = container.querySelector('.project-slider-track');
-    var btns = container.querySelectorAll('.year-btn');
-    
-    btns.forEach(function (b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    
-    // Dynamically update title, meta description, and CE/AC tags
-    var title = btn.getAttribute('data-title');
-    var meta = btn.getAttribute('data-meta');
-    var tags = btn.getAttribute('data-tags');
-    
-    var titleEl = container.querySelector('h3');
-    var metaEl = container.querySelector('.case-meta');
-    var tagsEl = container.querySelector('.project-meta-tags');
-    
-    if (title && titleEl) titleEl.innerHTML = title;
-    if (meta && metaEl) metaEl.innerHTML = meta;
-    if (tags && tagsEl) tagsEl.innerHTML = tags;
-    
-    if (track) {
-      if (show === 'mmi1') {
-        track.classList.add('show-mmi1');
-        track.style.transform = 'translateX(-50%)';
-      } else {
-        track.classList.remove('show-mmi1');
-        track.style.transform = 'translateX(0)';
-      }
-    }
-  });
-
   /* ---------- Lightbox Premium (zoom image) ---------- */
   document.addEventListener('click', function (e) {
     var slot = e.target.closest('image-slot');

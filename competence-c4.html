@@ -48,81 +48,79 @@
     </div>
 
     <div class="case-section" id="projet-kccatalogue" data-reveal>
-      <span class="label">Preuve 01</span>
+      <span class="label">Preuves</span>
       <div>
-      <div class="project-header-row">
-        <div>
-          <h3>SAÉ — <em>KC Catalogue</em></h3>
-          <p class="case-meta">Développement · PHP MVC & MySQL · SAÉ · 2025/26</p>
-        </div>
-        <div class="project-year-toggle">
-          <button class="year-btn active" 
-                  data-show="mmi2" 
-                  data-title="SAÉ — <em>KC Catalogue</em>" 
-                  data-meta="Développement · PHP MVC & MySQL · SAÉ · 2025/26"
-                  data-tags="<span class='acc'>●</span> <strong>CE visé :</strong> CE4.04 &nbsp;&nbsp;|&nbsp;&nbsp; <span class='acc'>●</span> <strong>AC visé :</strong> AC24.02">Actuel (MMI2)</button>
-          <button class="year-btn" 
-                  data-show="mmi1" 
-                  data-title="SAÉ 203 — <em>Gestionnaire LEGO</em>" 
-                  data-meta="Développement · Full PHP · SAÉ 203 · 2024/25"
-                  data-tags="<span class='acc'>●</span> <strong>CE visé :</strong> CE4.04 &nbsp;&nbsp;|&nbsp;&nbsp; <span class='acc'>●</span> <strong>AC visé :</strong> AC14.02">Précédent (MMI1)</button>
-        </div>
-      </div>
-      
-      <p class="mono project-meta-tags">
-        <span class="acc">●</span> <strong>CE visé :</strong> CE4.04 &nbsp;&nbsp;|&nbsp;&nbsp; 
-        <span class="acc">●</span> <strong>AC visé :</strong> AC24.02
-      </p>
 
-      <div class="project-slider">
-        <div class="project-slider-track">
-          <div class="project-slide slide-mmi2">
-            <div class="pp-gallery" style="margin-bottom: 24px;">
-              <div class="full"><image-slot id="kccatalogue-hero" src="uploads/kccatalogue_home.jpg" shape="rounded" radius="8" placeholder="Interface d'accueil — Catalogue de jeux vidéo KC Catalogue"></image-slot></div>
-            </div>
-
-            <h4>Site interactif avec panel d'administration (AC24.02)</h4>
-            <p>J'ai développé un site interactif complet en PHP et MySQL avec un back-office permettant de gérer dynamiquement les utilisateurs (CRUD, rôles, bannissements) et de suivre les modifications via un historique d'actions (logs) au sein d'un panel d'administration sur-mesure, sobre et épuré.</p>
-            
-            <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
-              <div><image-slot id="kccatalogue-admin-users" src="uploads/kccatalogue_admin_users.png" shape="rounded" radius="6" placeholder="Panel d'administration du back-office (Gestion des utilisateurs)"></image-slot></div>
-              <div><image-slot id="kccatalogue-admin-logs" src="uploads/kccatalogue_admin_logs.png" shape="rounded" radius="6" placeholder="Historique des actions d'administration (Logs)"></image-slot></div>
-            </div>
-
-            <h4 style="margin-top: 24px;">Modèle MVC &amp; GitHub pour travailler en groupe (CE4.04)</h4>
-            <p>J'ai structuré ce projet selon le modèle MVC pour séparer rigoureusement les données, les requêtes et l'affichage. Pour coordonner le travail d'équipe, nous avons utilisé Git et GitHub en appliquant des conventions professionnelles : un nommage structuré des branches par fonctionnalités (ex: <code>feature-admin</code>, <code>feature-calendar</code>, <code>patch-routes</code>) et un processus de revue sécurisé avant fusion. De plus, nous avons configuré un fichier <code>.gitignore</code> excluant les fichiers de configuration locale (comme <code>.env</code> et <code>.env.local</code>), garantissant ainsi une étanchéité parfaite entre l'environnement de développement et de production.</p>
-
-            <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
-              <div class="full"><image-slot id="kccatalogue-mvc" src="uploads/kccatalogue_mvc.png" shape="rounded" radius="6" placeholder="Structure du code en architecture MVC (public, src, views)"></image-slot></div>
-              <div><image-slot id="kccatalogue-git-branches" src="uploads/kccatalogue_git_branches.png" shape="rounded" radius="6" placeholder="Branches de fonctionnalités selon les conventions professionnelles (Git)"></image-slot></div>
-              <div><image-slot id="kccatalogue-gitignore" src="uploads/kccatalogue_gitignore.png" shape="rounded" radius="6" placeholder="Fichier .gitignore excluant les variables d'environnement locales (.env)"></image-slot></div>
-            </div>
-
-            <a href="https://github.com/dyzlek/kccatalogue" target="_blank" rel="noopener noreferrer" class="case-link">
-              Dépôt GitHub <span>→</span>
-            </a>
+        <!-- PROJET PRÉCÉDENT (MMI1) -->
+        <div class="project-evolution-block">
+          <div class="evolution-header">
+            <span class="mono evolution-badge"><span class="acc">●</span> Comment ça a commencé (MMI1)</span>
+            <h3>SAÉ 203 — <em>Gestionnaire LEGO</em></h3>
+            <p class="case-meta">Développement · Full PHP · SAÉ 203 · 2024/25</p>
+            <p class="mono project-meta-tags">
+              <span class="acc">●</span> <strong>CE visé :</strong> CE4.04 &nbsp;&nbsp;|&nbsp;&nbsp; 
+              <span class="acc">●</span> <strong>AC visé :</strong> AC14.02
+            </p>
           </div>
+
+          <div class="pp-gallery" style="margin-bottom: 24px;">
+            <div class="full"><image-slot id="lego-hero" src="uploads/sae_lego.png" shape="rounded" radius="8" placeholder="Interface d'accueil — Gestionnaire de sets LEGO"></image-slot></div>
+          </div>
+
+          <h4>Site dynamique en Full PHP (AC14.02)</h4>
+          <p>J'ai développé un site web dynamique en PHP pour permettre aux utilisateurs d'organiser et de suivre leur collection de sets LEGO. J'ai programmé les fonctionnalités d'inscription, de connexion et d'exploration de collection.</p>
           
-          <div class="project-slide slide-mmi1">
-            <div class="pp-gallery" style="margin-bottom: 24px;">
-              <div class="full"><image-slot id="lego-hero" src="uploads/sae_lego.png" shape="rounded" radius="8" placeholder="Interface d'accueil — Gestionnaire de sets LEGO"></image-slot></div>
-            </div>
+          <h4 style="margin-top: 24px;">Travail collaboratif en temps réel (CE4.04)</h4>
+          <p>Pour travailler efficacement en groupe sur le même espace de code, j'ai mis en place l'extension Live Share de VS Code. Cela m'a permis de co-écrire et d'éditer le code en temps réel avec mon équipe sur le même workspace, à la manière d'un Google Doc, facilitant la collaboration technique.</p>
 
-            <h4>Site dynamique en Full PHP (AC14.02)</h4>
-            <p>J'ai développé un site web dynamique en PHP pour permettre aux utilisateurs d'organiser et de suivre leur collection de sets LEGO. J'ai programmé les fonctionnalités d'inscription, de connexion et d'exploration de collection.</p>
-            
-            <h4 style="margin-top: 24px;">Travail collaboratif en temps réel (CE4.04)</h4>
-            <p>Pour travailler efficacement en groupe sur le même espace de code, j'ai mis en place l'extension Live Share de VS Code. Cela m'a permis de co-écrire et d'éditer le code en temps réel avec mon équipe sur le même workspace, à la manière d'un Google Doc, facilitant la collaboration technique.</p>
+          <h4 style="margin-top: 24px;">Structure linéaire avant le modèle MVC (AC14.02 / CE4.04)</h4>
+          <p>Avant d'adopter le modèle MVC lors de la SAÉ KC Catalogue en MMI2, le projet de première année reposait sur une architecture linéaire (« procédurale »). Comme le montre la capture ci-dessous, tous les scripts PHP (connexion, affichage, traitement de formulaires, bases de données) étaient mélangés à la racine du projet. Cette structure simple mais désorganisée illustre l'étape précédant notre transition vers la séparation propre du code (Modèle-Vue-Contrôleur).</p>
 
-            <h4 style="margin-top: 24px;">Structure linéaire avant le modèle MVC (AC14.02 / CE4.04)</h4>
-            <p>Avant d'adopter le modèle MVC lors de la SAÉ KC Catalogue en MMI2, le projet de première année reposait sur une architecture linéaire (« procédurale »). Comme le montre la capture ci-dessous, tous les scripts PHP (connexion, affichage, traitement de formulaires, bases de données) étaient mélangés à la racine du projet. Cette structure simple mais désorganisée illustre l'étape précédant notre transition vers la séparation propre du code (Modèle-Vue-Contrôleur).</p>
-
-            <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
-              <div class="full"><image-slot id="lego-sans-mvc" src="uploads/mmi1_sans_mvc.png" shape="rounded" radius="6" placeholder="Structure linéaire des fichiers avant le modèle MVC"></image-slot></div>
-            </div>
+          <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
+            <div class="full"><image-slot id="lego-sans-mvc" src="uploads/mmi1_sans_mvc.png" shape="rounded" radius="6" placeholder="Structure linéaire des fichiers avant le modèle MVC"></image-slot></div>
           </div>
         </div>
+
+        <!-- PROJET ACTUEL (MMI2) -->
+        <div class="project-evolution-block" style="margin-top: 64px; border-top: 1px solid var(--line); padding-top: 48px;">
+          <div class="evolution-header">
+            <span class="mono evolution-badge"><span class="acc">●</span> Maintenant (MMI2)</span>
+            <h3>SAÉ — <em>KC Catalogue</em></h3>
+            <p class="case-meta">Développement · PHP MVC & MySQL · SAÉ · 2025/26</p>
+            <p class="mono project-meta-tags">
+              <span class="acc">●</span> <strong>CE visé :</strong> CE4.04 &nbsp;&nbsp;|&nbsp;&nbsp; 
+              <span class="acc">●</span> <strong>AC visé :</strong> AC24.02
+            </p>
+          </div>
+
+          <div class="pp-gallery" style="margin-bottom: 24px;">
+            <div class="full"><image-slot id="kccatalogue-hero" src="uploads/kccatalogue_home.jpg" shape="rounded" radius="8" placeholder="Interface d'accueil — Catalogue de jeux vidéo KC Catalogue"></image-slot></div>
+          </div>
+
+          <h4>Site interactif avec panel d'administration (AC24.02)</h4>
+          <p>J'ai développé un site interactif complet en PHP et MySQL avec un back-office permettant de gérer dynamiquement les utilisateurs (CRUD, rôles, bannissements) et de suivre les modifications via un historique d'actions (logs) au sein d'un panel d'administration sur-mesure, sobre et épuré.</p>
+          
+          <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
+            <div><image-slot id="kccatalogue-admin-users" src="uploads/kccatalogue_admin_users.png" shape="rounded" radius="6" placeholder="Panel d'administration du back-office (Gestion des utilisateurs)"></image-slot></div>
+            <div><image-slot id="kccatalogue-admin-logs" src="uploads/kccatalogue_admin_logs.png" shape="rounded" radius="6" placeholder="Historique des actions d'administration (Logs)"></image-slot></div>
+          </div>
+
+          <h4 style="margin-top: 24px;">Modèle MVC &amp; GitHub pour travailler en groupe (CE4.04)</h4>
+          <p>J'ai structuré ce projet selon le modèle MVC pour séparer rigoureusement les données, les requêtes et l'affichage. Pour coordonner le travail d'équipe, nous avons utilisé Git et GitHub en appliquant des conventions professionnelles : un nommage structuré des branches par fonctionnalités (ex: <code>feature-admin</code>, <code>feature-calendar</code>, <code>patch-routes</code>) et un processus de revue sécurisé avant fusion. De plus, nous avons configuré un fichier <code>.gitignore</code> excluant les fichiers de configuration locale (comme <code>.env</code> et <code>.env.local</code>), garantissant ainsi une étanchéité parfaite entre l'environnement de développement et de production.</p>
+
+          <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
+            <div class="full"><image-slot id="kccatalogue-mvc" src="uploads/kccatalogue_mvc.png" shape="rounded" radius="6" placeholder="Structure du code en architecture MVC (public, src, views)"></image-slot></div>
+            <div><image-slot id="kccatalogue-git-branches" src="uploads/kccatalogue_git_branches.png" shape="rounded" radius="6" placeholder="Branches de fonctionnalités selon les conventions professionnelles (Git)"></image-slot></div>
+            <div><image-slot id="kccatalogue-gitignore" src="uploads/kccatalogue_gitignore.png" shape="rounded" radius="6" placeholder="Fichier .gitignore excluant les variables d'environnement locales (.env)"></image-slot></div>
+          </div>
+
+          <a href="https://github.com/dyzlek/kccatalogue" target="_blank" rel="noopener noreferrer" class="case-link">
+            Dépôt GitHub <span>→</span>
+          </a>
+        </div>
+
       </div>
+    </div>
 
       <!-- Sens critique -->
       <div class="analysis-section">
