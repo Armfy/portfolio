@@ -82,14 +82,18 @@
             </div>
 
             <h4>Site interactif avec panel d'administration (AC24.02)</h4>
-            <p>J'ai développé un site interactif complet en PHP et MySQL avec un back-office permettant de gérer dynamiquement les utilisateurs et les informations du site à l'aide d'un panel d'administration sobre et épuré.</p>
+            <p>J'ai développé un site interactif complet en PHP et MySQL avec un back-office permettant de gérer dynamiquement les utilisateurs (CRUD, rôles, bannissements) et de suivre les modifications via un historique d'actions (logs) au sein d'un panel d'administration sur-mesure, sobre et épuré.</p>
             
+            <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
+              <div><image-slot id="kccatalogue-admin-users" src="uploads/kccatalogue_admin_users.png" shape="rounded" radius="6" placeholder="Panel d'administration du back-office (Gestion des utilisateurs)"></image-slot></div>
+              <div><image-slot id="kccatalogue-admin-logs" src="uploads/kccatalogue_admin_logs.png" shape="rounded" radius="6" placeholder="Historique des actions d'administration (Logs)"></image-slot></div>
+            </div>
+
             <h4 style="margin-top: 24px;">Modèle MVC &amp; GitHub pour travailler en groupe (CE4.04)</h4>
             <p>J'ai structuré ce projet selon le modèle MVC qui permet de découper proprement les données, l'affichage et les requêtes, facilitant le travail en groupe. J'ai utilisé GitHub pour coordonner le développement en groupe, cela a permis gérer nos features ou patchs sous forme de branches et puis fusionner notre code de manière sécurisée, ainsi que de garder des sauvegardes qu'on pouvait rollbacks lors de conflits / bugz.</p>
 
             <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
-              <div><image-slot id="kccatalogue-mvc" src="uploads/kccatalogue_mvc.png" shape="rounded" radius="6" placeholder="Structure du code en architecture MVC (public, src, views)"></image-slot></div>
-              <div><image-slot id="kccatalogue-admin-sub" src="uploads/kccatalogue_admin.png" shape="rounded" radius="6" placeholder="Panel d'administration du back-office (CRUD &amp; Rôles)"></image-slot></div>
+              <div class="full"><image-slot id="kccatalogue-mvc" src="uploads/kccatalogue_mvc.png" shape="rounded" radius="6" placeholder="Structure du code en architecture MVC (public, src, views)"></image-slot></div>
             </div>
 
             <a href="https://github.com/dyzlek/kccatalogue" target="_blank" rel="noopener noreferrer" class="case-link">
@@ -107,6 +111,13 @@
             
             <h4 style="margin-top: 24px;">Travail collaboratif en temps réel (CE4.04)</h4>
             <p>Pour travailler efficacement en groupe sur le même espace de code, j'ai mis en place l'extension Live Share de VS Code. Cela m'a permis de co-écrire et d'éditer le code en temps réel avec mon équipe sur le même workspace, à la manière d'un Google Doc, facilitant la collaboration technique.</p>
+
+            <h4 style="margin-top: 24px;">Structure linéaire avant le modèle MVC (AC14.02 / CE4.04)</h4>
+            <p>Avant d'adopter le modèle MVC lors de la SAÉ KC Catalogue en MMI2, le projet de première année reposait sur une architecture linéaire (« procédurale »). Comme le montre la capture ci-dessous, tous les scripts PHP (connexion, affichage, traitement de formulaires, bases de données) étaient mélangés à la racine du projet. Cette structure simple mais désorganisée illustre l'étape précédant notre transition vers la séparation propre du code (Modèle-Vue-Contrôleur).</p>
+
+            <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
+              <div class="full"><image-slot id="lego-sans-mvc" src="uploads/mmi1_sans_mvc.png" shape="rounded" radius="6" placeholder="Structure linéaire des fichiers avant le modèle MVC"></image-slot></div>
+            </div>
           </div>
         </div>
       </div>
