@@ -90,10 +90,12 @@
             </div>
 
             <h4 style="margin-top: 24px;">Modèle MVC &amp; GitHub pour travailler en groupe (CE4.04)</h4>
-            <p>J'ai structuré ce projet selon le modèle MVC qui permet de découper proprement les données, l'affichage et les requêtes, facilitant le travail en groupe. J'ai utilisé GitHub pour coordonner le développement en groupe, cela a permis gérer nos features ou patchs sous forme de branches et puis fusionner notre code de manière sécurisée, ainsi que de garder des sauvegardes qu'on pouvait rollbacks lors de conflits / bugz.</p>
+            <p>J'ai structuré ce projet selon le modèle MVC pour séparer rigoureusement les données, les requêtes et l'affichage. Pour coordonner le travail d'équipe, nous avons utilisé Git et GitHub en appliquant des conventions professionnelles : un nommage structuré des branches par fonctionnalités (ex: <code>feature-admin</code>, <code>feature-calendar</code>, <code>patch-routes</code>) et un processus de revue sécurisé avant fusion. De plus, nous avons configuré un fichier <code>.gitignore</code> excluant les fichiers de configuration locale (comme <code>.env</code> et <code>.env.local</code>), garantissant ainsi une étanchéité parfaite entre l'environnement de développement et de production.</p>
 
             <div class="pp-gallery" style="margin-top: 24px; margin-bottom: 24px;">
               <div class="full"><image-slot id="kccatalogue-mvc" src="uploads/kccatalogue_mvc.png" shape="rounded" radius="6" placeholder="Structure du code en architecture MVC (public, src, views)"></image-slot></div>
+              <div><image-slot id="kccatalogue-git-branches" src="uploads/kccatalogue_git_branches.png" shape="rounded" radius="6" placeholder="Branches de fonctionnalités selon les conventions professionnelles (Git)"></image-slot></div>
+              <div><image-slot id="kccatalogue-gitignore" src="uploads/kccatalogue_gitignore.png" shape="rounded" radius="6" placeholder="Fichier .gitignore excluant les variables d'environnement locales (.env)"></image-slot></div>
             </div>
 
             <a href="https://github.com/dyzlek/kccatalogue" target="_blank" rel="noopener noreferrer" class="case-link">
