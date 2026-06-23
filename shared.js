@@ -389,6 +389,26 @@
     document.addEventListener('keydown', handleEsc);
   });
 
+  /* ---------- iOS Dynamic Island Mobile Tap Toggle ---------- */
+  var island = document.getElementById('dynamic-island');
+  if (island) {
+    island.addEventListener('click', function (e) {
+      if (!island.classList.contains('expanded')) {
+        // Expand on click if not already expanded and not clicking links directly
+        if (!e.target.closest('.nav-item') && !e.target.closest('.nav-logo')) {
+          e.preventDefault();
+          island.classList.add('expanded');
+        }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!island.contains(e.target)) {
+        island.classList.remove('expanded');
+      }
+    });
+  }
+
   /* ---------- déclenche l'anim d'entrée ---------- */
   window.addEventListener('load', function () {
     requestAnimationFrame(function () {
