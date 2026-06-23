@@ -92,63 +92,102 @@ em, .serif-it {
 /* ---------- nav : dynamic island ---------- */
 .nav {
   position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
-  z-index: 100;
-  display: flex; align-items: center;
-  gap: clamp(20px, 3.5vw, 44px);
-  padding: 9px 9px 9px 24px;
-  border-radius: 999px;
-  background: rgba(18, 15, 26, 0.55);
+  z-index: 1000;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 12px 8px 20px;
+  border-radius: 30px;
+  background: rgba(11, 10, 15, 0.85);
   border: 1px solid var(--line);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   max-width: calc(100vw - 32px);
-  white-space: nowrap;
-  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, top 0.4s ease;
+  width: auto;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 .nav.scrolled {
   top: 12px;
-  background: rgba(18, 15, 26, 0.8);
+  background: rgba(11, 10, 15, 0.95);
   border-color: var(--line-strong);
-  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.6),
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.7),
               0 0 0 1px oklch(0.62 0.19 310 / 0.1),
               0 0 28px oklch(0.62 0.19 310 / 0.12),
-              inset 0 1px 0 rgba(255, 255, 255, 0.07);
+              inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.nav-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 28px;
 }
 .nav-logo {
-  font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
   color: var(--text);
+  white-space: nowrap;
 }
 .nav-logo .acc { color: var(--accent); }
-.nav-links { display: flex; gap: clamp(18px, 3vw, 36px); align-items: center; }
-.nav-links a {
-  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--muted);
-  transition: color 0.25s ease;
-  position: relative;
+.nav-separator {
+  width: 1px;
+  height: 14px;
+  background: var(--line-strong);
 }
-.nav-links a::after {
-  content: ''; position: absolute; left: 0; bottom: -5px;
-  width: 100%; height: 1px; background: var(--accent);
-  transform: scaleX(0); transform-origin: right;
-  transition: transform 0.3s ease;
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
-.nav-links a:hover { color: var(--text); }
-.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-.nav-links a.keep {
-  background: var(--accent-dim);
-  border: 1px solid oklch(0.62 0.19 310 / 0.35);
+.nav-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.nav-item:hover {
   color: var(--text);
-  padding: 8px 18px; border-radius: 999px;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--line-strong);
 }
-.nav-links a.keep::after { display: none; }
-.nav-links a.keep:hover {
+.nav-item.active {
   background: var(--accent);
-  border-color: var(--accent);
   color: #0b0a0f;
-  box-shadow: 0 0 22px oklch(0.62 0.19 310 / 0.45);
+  border-color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 0 12px oklch(0.72 0.17 310 / 0.35);
 }
+.nav-island-label {
+  height: 0;
+  opacity: 0;
+  font-size: 10px;
+  font-family: var(--mono);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 0;
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.nav.expanded {
+  padding-bottom: 10px;
+  border-radius: 20px;
+}
+.nav.expanded .nav-island-label {
+  height: 16px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
 
 /* ---------- hero ---------- */
 .hero {

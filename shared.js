@@ -389,6 +389,51 @@
     document.addEventListener('keydown', handleEsc);
   });
 
+  /* ---------- Dynamic Island Navbar Hover Interaction ---------- */
+  var nav = document.getElementById('dynamic-island');
+  if (nav) {
+    var navItems = nav.querySelectorAll('.nav-item');
+    var labelEl = nav.querySelector('.nav-island-label');
+    
+    var activeItem = nav.querySelector('.nav-item.active');
+    var defaultText = activeItem ? activeItem.getAttribute('data-name') : '';
+    
+    nav.addEventListener('mouseenter', function () {
+      if (labelEl && defaultText) {
+        labelEl.textContent = defaultText;
+        nav.classList.add('expanded');
+      }
+    });
+
+    navItems.forEach(function (item) {
+      item.addEventListener('mouseenter', function (e) {
+        e.stopPropagation();
+        var name = item.getAttribute('data-name');
+        if (labelEl && name) {
+          labelEl.textContent = name;
+          nav.classList.add('expanded');
+        }
+      });
+      item.addEventListener('mouseleave', function () {
+        if (labelEl) {
+          labelEl.textContent = defaultText || '';
+          if (!defaultText) {
+            nav.classList.remove('expanded');
+          }
+        }
+      });
+    });
+    
+    nav.addEventListener('mouseleave', function () {
+      nav.classList.remove('expanded');
+      setTimeout(function() {
+        if (!nav.classList.contains('expanded') && labelEl) {
+          labelEl.textContent = '';
+        }
+      }, 300);
+    });
+  }
+
   /* ---------- déclenche l'anim d'entrée ---------- */
   window.addEventListener('load', function () {
     requestAnimationFrame(function () {
