@@ -9,7 +9,7 @@
   /* Montagnes éclairées par le curseur — rendu GLSL (un seul quad plein écran).
      L'éclairage est calculé par pixel : pas de scintillement, pas de strokes. */
   function initWaves(canvas) {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     var w = 0, h = 0, t = Math.random() * 100, raf = null, visible = true;
     var cx = -9999, cy = -9999, gx = -9999, gy = -9999, glowA = 0, overCanvas = false;
 
@@ -40,9 +40,9 @@
       'uniform float u_time;',
       'uniform vec2 u_light;',
       'uniform float u_glow;',
-      'const int LAYERS = 7;',
+      'const int LAYERS = 5;',
       'float ridge(float u){',
-      '  float v = sin(u)*0.52 + sin(u*2.27+1.7)*0.29 + sin(u*5.13+4.2)*0.13 + sin(u*11.7+8.9)*0.06;',
+      '  float v = sin(u)*0.62 + sin(u*2.3+1.7)*0.38;',
       '  return 1.0 - abs(v);',
       '}',
       'float topY(int i, float x, float H){',
@@ -80,7 +80,7 @@
       '    if (P.y < T) {',
       '      vec3 base = mix(vec3(0.030,0.024,0.050), vec3(0.075,0.050,0.110), p);',
       '      float dx = 1.5;',
-      '      float slope = (topY(i, P.x+dx, H) - topY(i, P.x-dx, H))/(2.0*dx);',
+      '      float slope = (topY(i, P.x+dx, H) - T)/dx;',
       '      vec2 n = normalize(vec2(-slope, 1.0));',
       '      vec2 ld = normalize(u_light - P);',
       '      float lam = max(0.0, dot(n, ld));',
@@ -388,26 +388,6 @@
     };
     document.addEventListener('keydown', handleEsc);
   });
-
-  /* ---------- iOS Dynamic Island Mobile Tap Toggle ---------- */
-  var island = document.getElementById('dynamic-island');
-  if (island) {
-    island.addEventListener('click', function (e) {
-      if (!island.classList.contains('expanded')) {
-        // Expand on click if not already expanded and not clicking links directly
-        if (!e.target.closest('.nav-item') && !e.target.closest('.nav-logo')) {
-          e.preventDefault();
-          island.classList.add('expanded');
-        }
-      }
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!island.contains(e.target)) {
-        island.classList.remove('expanded');
-      }
-    });
-  }
 
   /* ---------- déclenche l'anim d'entrée ---------- */
   window.addEventListener('load', function () {
