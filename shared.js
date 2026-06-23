@@ -11,9 +11,6 @@
   function initWaves(canvas) {
     var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     var w = 0, h = 0, t = Math.random() * 100, raf = null, visible = true;
-    var cx = -9999, cy = -9999, gx = -9999, gy = -9999, glowA = 0, overCanvas = false;
-
-    document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; });
 
     var gl = canvas.getContext('webgl', { antialias: true, alpha: false, premultipliedAlpha: false })
           || canvas.getContext('experimental-webgl', { antialias: true });
@@ -38,8 +35,6 @@
       'uniform vec2 u_res;',
       'uniform float u_dpr;',
       'uniform float u_time;',
-      'uniform vec2 u_light;',
-      'uniform float u_glow;',
       'const int LAYERS = 5;',
       'float ridge(float u){',
       '  float v = sin(u)*0.62 + sin(u*2.3+1.7)*0.38;',
@@ -60,18 +55,12 @@
       '  vec2 P = gl_FragCoord.xy/u_dpr;',
       '  float ty = P.y / H;',
       '  vec3 col = mix(vec3(0.050,0.038,0.082), vec3(0.090,0.062,0.150), smoothstep(0.15,1.0,ty));',
-      '  float R = 0.42*min(W,H);',
-      '  float dist = distance(P, u_light);',
-      '  float fall = u_glow * smoothstep(R, 0.0, dist);',
-      '  col += vec3(0.30,0.16,0.42) * smoothstep(0.62,0.42,ty) * smoothstep(0.20,0.45,ty) * (0.06 + 0.10*fall);',
       '  if (ty > 0.42) {',
       '    vec2 g = floor(P/3.0);',
       '    float hs = hash(g);',
       '    if (hs > 0.987) {',
       '      float tw = 0.5 + 0.5*sin(u_time*6.0*(0.6+hash(g+7.0)) + hash(g)*6.2832);',
-      '      float near = max(0.0, 1.0 - dist/(R*1.3));',
-      '      float a = (0.18 + 0.5*tw)*(0.55 + 0.45*u_glow) + 0.5*near*u_glow;',
-      '      col += mix(vec3(0.78,0.80,0.92), vec3(0.85,0.55,0.98), near) * a;',
+      '      col += vec3(0.78,0.80,0.92) * (0.18 + 0.5*tw);',
       '    }',
       '  }',
       '  for (int i=0;i<LAYERS;i++){',
@@ -79,16 +68,9 @@
       '    float T = topY(i, P.x, H);',
       '    if (P.y < T) {',
       '      vec3 base = mix(vec3(0.030,0.024,0.050), vec3(0.075,0.050,0.110), p);',
-      '      float dx = 1.5;',
-      '      float slope = (topY(i, P.x+dx, H) - T)/dx;',
-      '      vec2 n = normalize(vec2(-slope, 1.0));',
-      '      vec2 ld = normalize(u_light - P);',
-      '      float lam = max(0.0, dot(n, ld));',
-      '      float surf = fall*(0.20 + 0.34*p);',
-      '      base += vec3(0.62,0.30,0.86) * surf * (0.55 + 0.45*lam);',
       '      float d = T - P.y;',
       '      float rim = smoothstep(1.6,0.0,d) + 0.45*smoothstep(9.0,0.0,d);',
-      '      base += vec3(0.85,0.60,1.0) * rim * (0.12 + 0.88*fall) * (0.40 + 0.60*lam);',
+      '      base += vec3(0.62,0.30,0.86) * rim * (0.15 + 0.35*p);',
       '      col = base;',
       '    }',
       '  }',
@@ -123,8 +105,6 @@
     var uRes = gl.getUniformLocation(prog, 'u_res');
     var uDpr = gl.getUniformLocation(prog, 'u_dpr');
     var uTime = gl.getUniformLocation(prog, 'u_time');
-    var uLight = gl.getUniformLocation(prog, 'u_light');
-    var uGlow = gl.getUniformLocation(prog, 'u_glow');
 
     function resize() {
       w = canvas.offsetWidth; h = canvas.offsetHeight;
@@ -138,25 +118,9 @@
     function frame() {
       t += 0.0032;
 
-      /* lumière : suit le curseur au survol, sinon dérive en autonomie */
-      var rect = canvas.getBoundingClientRect();
-      var mx = cx - rect.left, my = cy - rect.top;
-      overCanvas = cx > -9000 && mx >= 0 && mx <= rect.width && my >= -80 && my <= rect.height + 80;
-      var autoX = w * (0.5 + 0.32 * Math.sin(t * 0.40));
-      var autoY = h * (0.28 + 0.09 * Math.sin(t * 0.63 + 1.1));
-      var tx = overCanvas ? mx : autoX;
-      var ty = overCanvas ? my : autoY;
-      if (gx < -999) { gx = tx; gy = ty; }
-      var ease = overCanvas ? 0.10 : 0.022;
-      gx += (tx - gx) * ease;
-      gy += (ty - gy) * ease;
-      glowA += ((overCanvas ? 1 : 0.55) - glowA) * 0.05;
-
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform1f(uDpr, dpr);
       gl.uniform1f(uTime, t);
-      gl.uniform2f(uLight, gx, h - gy); /* repère y vers le haut, comme gl_FragCoord */
-      gl.uniform1f(uGlow, glowA);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
 
       raf = requestAnimationFrame(frame);
@@ -166,8 +130,7 @@
     function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
     if (reduceMotion) {
-      /* une seule frame statique, déjà éclairée */
-      t = 4.2; glowA = 0.6; gx = w * 0.62; gy = h * 0.3; frame(); stop();
+      t = 4.2; frame(); stop();
       return;
     }
 
