@@ -510,7 +510,8 @@ body.loaded .hero-foot { opacity: 1; transform: none; }
   margin-bottom: 20px;
   font-size: 13px;
   max-width: none;
-  white-space: nowrap;
+  white-space: normal;
+  line-height: 1.6;
 }
 
 /* ---------- project comparison slider ---------- */

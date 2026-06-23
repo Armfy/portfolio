@@ -14,16 +14,13 @@ Ce portfolio est un document pédagogique conçu pour attester de mon évolution
 
 ## 📁 Projets phares présentés
 
-Le portfolio met en avant **8 projets clés** réalisés durant mon parcours :
+Le portfolio met en avant les réalisations clés de mon parcours BUT MMI :
 
-1. **PFT34 Méc@innov** (Stage) — Refonte globale de la communication (Web, Print, Vidéo).
-2. **Hackathon 2026** — Stratégie de communication de groupe pour le Cabinet LMB Thérapie.
-3. **Marathon MMI (Immanence Djerba)** — Production audiovisuelle et de communication intensive en équipe.
-4. **Horizon** — Design UX/UI et gestion de projet (Jira) d'une application de gestion personnelle.
-5. **SAE Jeu Vidéo** — Développement complet d'un jeu web en 3 semaines en utilisant PhaserJS.
-6. **Visualisation 3D (SAE D1.02)** — Modèle 3D interactif connecté à une base de données.
-7. **Hydratis × ARM'Communication** — Audit stratégique et plan de lancement (Budget fictif 80K€).
-8. **Publicité 1'30** — Production complète (tournage, montage, étalonnage) d'un spot publicitaire pour une montre.
+1. **PFT34 Méc@innov** (Stage) — Refonte de l'identité visuelle et production de supports print/vidéo.
+2. **eColoc** — Conception d'expérience utilisateur (UX) et design d'interface (UI) pour une application de colocation.
+3. **SAÉ — KC Catalogue** — Développement d'une application web dynamique avec architecture MVC et back-office en PHP.
+4. **Hydratis × ARM'Communication** — Audit de communication digitale complet et analyse ergonomique.
+5. **Horizon** — Gestion de projet agile (Jira) d'une application de gestion personnelle.
 
 ---
 
