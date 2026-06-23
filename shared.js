@@ -398,10 +398,38 @@
     var activeItem = nav.querySelector('.nav-item.active');
     var defaultText = activeItem ? activeItem.getAttribute('data-name') : '';
     
-    nav.addEventListener('mouseenter', function () {
-      if (labelEl && defaultText) {
-        labelEl.textContent = defaultText;
+    var hoverTimeout = null;
+
+    var updateIsland = function (text, expand) {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = null;
+      }
+
+      if (expand) {
+        if (labelEl) labelEl.textContent = text;
         nav.classList.add('expanded');
+      } else {
+        nav.classList.remove('expanded');
+        hoverTimeout = setTimeout(function () {
+          if (labelEl && !nav.classList.contains('expanded')) {
+            labelEl.textContent = '';
+          }
+        }, 350); // Matches CSS transition duration
+      }
+    };
+
+    nav.addEventListener('mouseenter', function () {
+      if (defaultText) {
+        updateIsland(defaultText, true);
+      }
+    });
+
+    nav.addEventListener('mouseleave', function () {
+      if (defaultText) {
+        updateIsland(defaultText, true);
+      } else {
+        updateIsland('', false);
       }
     });
 
@@ -409,28 +437,23 @@
       item.addEventListener('mouseenter', function (e) {
         e.stopPropagation();
         var name = item.getAttribute('data-name');
-        if (labelEl && name) {
-          labelEl.textContent = name;
-          nav.classList.add('expanded');
+        if (name) {
+          updateIsland(name, true);
         }
       });
+      
       item.addEventListener('mouseleave', function () {
-        if (labelEl) {
-          labelEl.textContent = defaultText || '';
-          if (!defaultText) {
-            nav.classList.remove('expanded');
+        hoverTimeout = setTimeout(function () {
+          // If the mouse is still hovering over the navbar (between items), keep it open
+          if (nav.matches(':hover')) {
+            if (defaultText) {
+              updateIsland(defaultText, true);
+            } else {
+              updateIsland('', false);
+            }
           }
-        }
+        }, 10);
       });
-    });
-    
-    nav.addEventListener('mouseleave', function () {
-      nav.classList.remove('expanded');
-      setTimeout(function() {
-        if (!nav.classList.contains('expanded') && labelEl) {
-          labelEl.textContent = '';
-        }
-      }, 300);
     });
   }
 

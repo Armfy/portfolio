@@ -177,6 +177,7 @@ em, .serif-it {
   text-align: center;
   pointer-events: none;
   white-space: nowrap;
+  overflow: hidden;
 }
 .nav.expanded {
   padding-bottom: 10px;
